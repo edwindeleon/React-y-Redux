@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<main id="app"></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.js"></script>
+<script type="text/javascript">
+	function Hola(props) {
+		const name = props.name;
+
+		return React.DOM.h1({
+			id: 'Title',
+		}, `Hola ${name}`);
+	}
+
+	const hola =  React.createElement(Hola, {
+		name: 'Mardwin',
+	});
+
+	ReactDOM.render(
+		hola,
+		document.getElementById('app')
+	);
+
+	setTimeout(
+			() => {
+				ReactDOM.render(
+					React.createElement(Hola, {name: 'Mardwin!'}),
+					document.getElementById('app')
+					);
+			},
+			1000
+		)
+</script>
+</body>
+</html>
