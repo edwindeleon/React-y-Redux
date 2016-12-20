@@ -1,17 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title></title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 <body>
-<main id="app"></main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.19.0/babel.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.js"></script>
-<script type="text/babel">
+  <main id="app"></main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.2/babel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+  <script type="text/babel">
+    function Counter(WrappedComponent) {
+      class CounterHOC extends React.Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            count: 0,
+          };
+
+          this.handleClick = this.handleClick.bind(this);
+        }
+
+        getChildContext() {
+          return {
+            count: this.state.count,
+          };
+        }
+
+        handleClick() {
+          this.setState({
+            count: this.state.count + 1,
+          });
+        }
+
+        render() {
+          return (
+            <WrappedComponent
+              onClick={this.handleClick}
+              {...this.props}
+            />
+          )
+        }
+      }
+
+      CounterHOC.childContextTypes = {
+        count: React.PropTypes.number,
+      };
+
+      return CounterHOC;
+    }
+
     function Hola(props, context) {
       return (
-        <h1 id="Title" onClick={props.onClick} onMouseEnter={props.onMouseEnter}>
+        <h1 id="Title" onClick={props.onClick}>
           Hola {props.name} {context.count}
         </h1>
       );
@@ -20,6 +62,8 @@
     Hola.contextTypes = {
       count: React.PropTypes.number
     };
+
+    const HolaHOC = Counter(Hola);
 
     class MiComponente extends React.Component {
       constructor(props) {
@@ -95,10 +139,25 @@
       count: React.PropTypes.number,
     };
 
+    const mixin = {
+      handleClick() {
+        console.log('clickeado');
+      },
+    };
+
+    const Componente = React.createClass({
+      mixins: [
+        mixin,
+      ],
+      render() {
+        return <div onClick={this.handleClick}>hola</div>;
+      }
+    })
+
     ReactDOM.render(
-      <MiComponente name="Mardwin" />,
+      <Componente />,
       document.getElementById('app')
     );
-</script>
+  </script>
 </body>
 </html>
