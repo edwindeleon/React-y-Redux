@@ -5,35 +5,84 @@
 </head>
 <body>
 <main id="app"></main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.19.0/babel.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.js"></script>
-<script type="text/javascript">
-	function Hola(props) {
-		const name = props.name;
+<script type="text/babel">
+function Hola(props) {
+      return (
+        <h1 id="Title" onClick={props.onClick}>
+          Hola {props.name} {props.count}
+        </h1>
+      );
+    }
 
-		return React.DOM.h1({
-			id: 'Title',
-		}, `Hola ${name}`);
-	}
+    class MiComponente extends React.Component {
+      constructor(props) {
+        super(props);
 
-	const hola =  React.createElement(Hola, {
-		name: 'Mardwin',
-	});
+        this.state = {
+          count: 0,
+        };
+
+        this.handleClick = this.handleClick.bind(this);
+      }
+
+      componentWillMount() {
+      console.log('El componente se va a montar');
+      }
+
+      componentDidMount() {
+        document.addEventListener('click', this.handleClick);
+      }
+
+      // componentWillReceiveProps(nextProps) {
+      //  this.setState({
+      //  count: this.state.count * 2,
+      //  })
+      // }
+
+      shouldComponentUpdate(nextProps, nextState) {
+        if(nextState.count !== this.state.count) return true;
+          return false;
+      }
+
+      componentWillUpdate() {
+        console.log('El componente se va a actualizar');
+      }
+
+      componentDidUpdate() {
+        console.log('El componente se actualizo');
+      }
+
+      componetWillUnmount() {
+        document.removeEventListener('click', this.handleClick);
+      }
+
+
+
+
+      handleClick() {
+        this.setState({
+          count: this.state.count + 1,
+        });
+      }
+
+      render() {
+        return (
+          <Hola
+            name={this.props.name}
+            count={this.state.count}
+            onClick={this.handleClick}
+          />
+        );
+      }
+    }
 
 	ReactDOM.render(
-		hola,
+		<MiComponente name="Mardwin" />,
 		document.getElementById('app')
 	);
-
-	setTimeout(
-			() => {
-				ReactDOM.render(
-					React.createElement(Hola, {name: 'Mardwin!'}),
-					document.getElementById('app')
-					);
-			},
-			1000
-		)
 </script>
 </body>
 </html>
