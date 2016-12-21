@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bff": "node ./built/server/index.js",
+    "sfs": "serve ./built/statics --port 3001 --cache 0"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,20 @@
   },
   "homepage": "https://github.com/edwindeleon/React-y-Redux#readme",
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "react-router": "^4.0.0-alpha.6"
   },
   "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-preset-es2016": "^6.16.0",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-preset-latest-minimal": "^1.1.2",
+    "babel-preset-react": "^6.16.0",
+    "json-loader": "^0.5.4",
     "webpack": "^1.14.0"
   }
 }
