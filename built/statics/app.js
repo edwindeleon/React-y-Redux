@@ -25404,15 +25404,15 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Post = __webpack_require__(218);
+	var _Post = __webpack_require__(222);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Profile = __webpack_require__(219);
+	var _Profile = __webpack_require__(223);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Error = __webpack_require__(224);
+	var _Error = __webpack_require__(225);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
@@ -25462,11 +25462,11 @@
 
 	var _reactRouter = __webpack_require__(178);
 
-	var _Post = __webpack_require__(220);
+	var _Post = __webpack_require__(218);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _api = __webpack_require__(221);
+	var _api = __webpack_require__(219);
 
 	var _api2 = _interopRequireDefault(_api);
 
@@ -25500,7 +25500,7 @@
 	  }
 
 	  render() {
-	    console.log(this.props);
+
 	    return _react2.default.createElement(
 	      'section',
 	      { name: 'Home' },
@@ -25518,11 +25518,6 @@
 	          'loading posts...'
 	        ),
 	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post)))
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/about' },
-	        'Go to about'
 	      )
 	    );
 	  }
@@ -25546,164 +25541,7 @@
 
 	var _reactRouter = __webpack_require__(178);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	class Post extends _react.Component {
-	  render() {
-	    return _react2.default.createElement(
-	      'section',
-	      { name: 'Post' },
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Post'
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/' },
-	        'Go to home'
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/ramdom' },
-	        'Go to ramdom'
-	      )
-	    );
-	  }
-	}
-
-	exports.default = Post;
-
-/***/ },
-/* 219 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(178);
-
-	var _Post = __webpack_require__(220);
-
-	var _Post2 = _interopRequireDefault(_Post);
-
-	var _api = __webpack_require__(221);
-
-	var _api2 = _interopRequireDefault(_api);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-	class Profile extends _react.Component {
-	  constructor(props) {
-	    super(props);
-
-	    this.state = {
-	      user: {},
-	      posts: [],
-	      loading: true
-	    };
-	  }
-
-	  componentDidMount() {
-	    var _this = this;
-
-	    return _asyncToGenerator(function* () {
-	      const [user, posts] = yield Promise.all([_api2.default.users.getSingle(_this.props.params.id), _api2.default.users.getPosts(_this.props.params.id)]);
-
-	      _this.setState({
-	        user,
-	        posts,
-	        loading: false
-	      });
-	    })();
-	  }
-	  render() {
-	    return _react2.default.createElement(
-	      'section',
-	      { name: 'Profile' },
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        'profile of ',
-	        this.state.user.name
-	      ),
-	      _react2.default.createElement(
-	        'fieldset',
-	        null,
-	        _react2.default.createElement(
-	          'legend',
-	          null,
-	          'Basic Info'
-	        ),
-	        _react2.default.createElement('input', { type: 'email', value: this.state.user.email, disabled: true })
-	      ),
-	      this.state.user.address && _react2.default.createElement(
-	        'fieldset',
-	        null,
-	        _react2.default.createElement(
-	          'legend',
-	          null,
-	          'Address'
-	        ),
-	        _react2.default.createElement(
-	          'address',
-	          null,
-	          this.state.user.address.street,
-	          '  ',
-	          _react2.default.createElement('br', null),
-	          this.state.user.address.suite,
-	          '  ',
-	          _react2.default.createElement('br', null),
-	          this.state.user.address.city,
-	          '  ',
-	          _react2.default.createElement('br', null),
-	          this.state.user.address.zipcode,
-	          '  ',
-	          _react2.default.createElement('br', null)
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'section',
-	        null,
-	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({
-	          key: post.id,
-	          user: this.state.user
-	        }, post)))
-	      )
-	    );
-	  }
-	}
-
-	exports.default = Profile;
-
-/***/ },
-/* 220 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(178);
-
-	var _api = __webpack_require__(221);
+	var _api = __webpack_require__(219);
 
 	var _api2 = _interopRequireDefault(_api);
 
@@ -25726,12 +25564,13 @@
 	    var _this = this;
 
 	    return _asyncToGenerator(function* () {
+	      if (!!_this.state.user && !!_this.state.comments) return _this.setState({ loading: false });
 	      const [user, comments] = yield Promise.all([!_this.state.user ? _api2.default.users.getSingle(_this.props.userId) : Promise.resolve(null), _api2.default.posts.getComments(_this.props.id)]);
 
 	      _this.setState({
 	        loading: false,
 	        user: user || _this.state.user,
-	        comments
+	        comments: []
 	      });
 	    })();
 	  }
@@ -25751,7 +25590,7 @@
 	        null,
 	        this.props.body
 	      ),
-	      !this.props.loading && _react2.default.createElement(
+	      !this.state.loading && _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
@@ -25781,7 +25620,7 @@
 	exports.default = Post;
 
 /***/ },
-/* 221 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25790,7 +25629,7 @@
 	  value: true
 	});
 
-	var _isomorphicFetch = __webpack_require__(222);
+	var _isomorphicFetch = __webpack_require__(220);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -25845,19 +25684,19 @@
 	exports.default = api;
 
 /***/ },
-/* 222 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// the whatwg-fetch polyfill installs the fetch() function
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(223);
+	__webpack_require__(221);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ },
-/* 223 */
+/* 221 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -26321,7 +26160,166 @@
 
 
 /***/ },
-/* 224 */
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(178);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	class Post extends _react.Component {
+
+	  render() {
+	    return _react2.default.createElement(
+	      'section',
+	      { name: 'Post' },
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Post'
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/' },
+	        'Go to home'
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/ramdom' },
+	        'Go to ramdom'
+	      )
+	    );
+	  }
+	}
+
+	exports.default = Post;
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(178);
+
+	var _Post = __webpack_require__(218);
+
+	var _Post2 = _interopRequireDefault(_Post);
+
+	var _api = __webpack_require__(219);
+
+	var _api2 = _interopRequireDefault(_api);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+	class Profile extends _react.Component {
+	  constructor(props) {
+	    super(props);
+
+	    this.state = {
+	      user: {},
+	      posts: [],
+	      loading: true
+	    };
+	  }
+
+	  componentDidMount() {
+	    var _this = this;
+
+	    return _asyncToGenerator(function* () {
+	      const [user, posts] = yield Promise.all([_api2.default.users.getSingle(_this.props.params.id), _api2.default.users.getPosts(_this.props.params.id)]);
+
+	      _this.setState({
+	        user,
+	        posts,
+	        loading: false
+	      });
+	    })();
+	  }
+	  render() {
+	    return _react2.default.createElement(
+	      'section',
+	      { name: 'Profile' },
+	      _react2.default.createElement(
+	        'h2',
+	        null,
+	        'profile of ',
+	        this.state.user.name
+	      ),
+	      _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Basic Info'
+	        ),
+	        _react2.default.createElement('input', { type: 'email', value: this.state.user.email, disabled: true })
+	      ),
+	      this.state.user.address && _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Address'
+	        ),
+	        _react2.default.createElement(
+	          'address',
+	          null,
+	          this.state.user.address.street,
+	          '  ',
+	          _react2.default.createElement('br', null),
+	          this.state.user.address.suite,
+	          '  ',
+	          _react2.default.createElement('br', null),
+	          this.state.user.address.city,
+	          '  ',
+	          _react2.default.createElement('br', null),
+	          this.state.user.address.zipcode,
+	          '  ',
+	          _react2.default.createElement('br', null)
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'section',
+	        null,
+	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({
+	          key: post.id,
+	          user: this.state.user
+	        }, post)))
+	      )
+	    );
+	  }
+	}
+
+	exports.default = Profile;
+
+/***/ },
+/* 224 */,
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

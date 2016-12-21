@@ -62,7 +62,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Layout = __webpack_require__(256);
+	var _Layout = __webpack_require__(257);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -24264,15 +24264,15 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Post = __webpack_require__(212);
+	var _Post = __webpack_require__(253);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Profile = __webpack_require__(213);
+	var _Profile = __webpack_require__(254);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Error = __webpack_require__(255);
+	var _Error = __webpack_require__(256);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
@@ -24322,11 +24322,11 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _Post = __webpack_require__(214);
+	var _Post = __webpack_require__(212);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _api = __webpack_require__(215);
+	var _api = __webpack_require__(213);
 
 	var _api2 = _interopRequireDefault(_api);
 
@@ -24360,7 +24360,7 @@
 	  }
 
 	  render() {
-	    console.log(this.props);
+
 	    return _react2.default.createElement(
 	      'section',
 	      { name: 'Home' },
@@ -24378,11 +24378,6 @@
 	          'loading posts...'
 	        ),
 	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post)))
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/about' },
-	        'Go to about'
 	      )
 	    );
 	  }
@@ -24406,164 +24401,7 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	class Post extends _react.Component {
-	  render() {
-	    return _react2.default.createElement(
-	      'section',
-	      { name: 'Post' },
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Post'
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/' },
-	        'Go to home'
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/ramdom' },
-	        'Go to ramdom'
-	      )
-	    );
-	  }
-	}
-
-	exports.default = Post;
-
-/***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(172);
-
-	var _Post = __webpack_require__(214);
-
-	var _Post2 = _interopRequireDefault(_Post);
-
-	var _api = __webpack_require__(215);
-
-	var _api2 = _interopRequireDefault(_api);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-	class Profile extends _react.Component {
-	  constructor(props) {
-	    super(props);
-
-	    this.state = {
-	      user: {},
-	      posts: [],
-	      loading: true
-	    };
-	  }
-
-	  componentDidMount() {
-	    var _this = this;
-
-	    return _asyncToGenerator(function* () {
-	      const [user, posts] = yield Promise.all([_api2.default.users.getSingle(_this.props.params.id), _api2.default.users.getPosts(_this.props.params.id)]);
-
-	      _this.setState({
-	        user,
-	        posts,
-	        loading: false
-	      });
-	    })();
-	  }
-	  render() {
-	    return _react2.default.createElement(
-	      'section',
-	      { name: 'Profile' },
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        'profile of ',
-	        this.state.user.name
-	      ),
-	      _react2.default.createElement(
-	        'fieldset',
-	        null,
-	        _react2.default.createElement(
-	          'legend',
-	          null,
-	          'Basic Info'
-	        ),
-	        _react2.default.createElement('input', { type: 'email', value: this.state.user.email, disabled: true })
-	      ),
-	      this.state.user.address && _react2.default.createElement(
-	        'fieldset',
-	        null,
-	        _react2.default.createElement(
-	          'legend',
-	          null,
-	          'Address'
-	        ),
-	        _react2.default.createElement(
-	          'address',
-	          null,
-	          this.state.user.address.street,
-	          '  ',
-	          _react2.default.createElement('br', null),
-	          this.state.user.address.suite,
-	          '  ',
-	          _react2.default.createElement('br', null),
-	          this.state.user.address.city,
-	          '  ',
-	          _react2.default.createElement('br', null),
-	          this.state.user.address.zipcode,
-	          '  ',
-	          _react2.default.createElement('br', null)
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'section',
-	        null,
-	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({
-	          key: post.id,
-	          user: this.state.user
-	        }, post)))
-	      )
-	    );
-	  }
-	}
-
-	exports.default = Profile;
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(172);
-
-	var _api = __webpack_require__(215);
+	var _api = __webpack_require__(213);
 
 	var _api2 = _interopRequireDefault(_api);
 
@@ -24586,12 +24424,13 @@
 	    var _this = this;
 
 	    return _asyncToGenerator(function* () {
+	      if (!!_this.state.user && !!_this.state.comments) return _this.setState({ loading: false });
 	      const [user, comments] = yield Promise.all([!_this.state.user ? _api2.default.users.getSingle(_this.props.userId) : Promise.resolve(null), _api2.default.posts.getComments(_this.props.id)]);
 
 	      _this.setState({
 	        loading: false,
 	        user: user || _this.state.user,
-	        comments
+	        comments: []
 	      });
 	    })();
 	  }
@@ -24611,7 +24450,7 @@
 	        null,
 	        this.props.body
 	      ),
-	      !this.props.loading && _react2.default.createElement(
+	      !this.state.loading && _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
@@ -24641,7 +24480,7 @@
 	exports.default = Post;
 
 /***/ },
-/* 215 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24650,7 +24489,7 @@
 	  value: true
 	});
 
-	var _isomorphicFetch = __webpack_require__(216);
+	var _isomorphicFetch = __webpack_require__(214);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -24705,12 +24544,12 @@
 	exports.default = api;
 
 /***/ },
-/* 216 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var realFetch = __webpack_require__(217);
+	var realFetch = __webpack_require__(215);
 	module.exports = function(url, options) {
 		if (/^\/\//.test(url)) {
 			url = 'https:' + url;
@@ -24727,7 +24566,7 @@
 
 
 /***/ },
-/* 217 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -24737,18 +24576,18 @@
 	 * a request API compatible with window.fetch
 	 */
 
-	var parse_url = __webpack_require__(218).parse;
-	var resolve_url = __webpack_require__(218).resolve;
+	var parse_url = __webpack_require__(216).parse;
+	var resolve_url = __webpack_require__(216).resolve;
 	var http = __webpack_require__(1);
-	var https = __webpack_require__(219);
-	var zlib = __webpack_require__(220);
-	var stream = __webpack_require__(221);
+	var https = __webpack_require__(217);
+	var zlib = __webpack_require__(218);
+	var stream = __webpack_require__(219);
 
-	var Body = __webpack_require__(222);
-	var Response = __webpack_require__(252);
-	var Headers = __webpack_require__(253);
-	var Request = __webpack_require__(254);
-	var FetchError = __webpack_require__(250);
+	var Body = __webpack_require__(220);
+	var Response = __webpack_require__(250);
+	var Headers = __webpack_require__(251);
+	var Request = __webpack_require__(252);
+	var FetchError = __webpack_require__(248);
 
 	// commonjs
 	module.exports = Fetch;
@@ -25004,31 +24843,31 @@
 
 
 /***/ },
-/* 218 */
+/* 216 */
 /***/ function(module, exports) {
 
 	module.exports = require("url");
 
 /***/ },
-/* 219 */
+/* 217 */
 /***/ function(module, exports) {
 
 	module.exports = require("https");
 
 /***/ },
-/* 220 */
+/* 218 */
 /***/ function(module, exports) {
 
 	module.exports = require("zlib");
 
 /***/ },
-/* 221 */
+/* 219 */
 /***/ function(module, exports) {
 
 	module.exports = require("stream");
 
 /***/ },
-/* 222 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -25038,10 +24877,10 @@
 	 * Body interface provides common methods for Request and Response
 	 */
 
-	var convert = __webpack_require__(223).convert;
-	var bodyStream = __webpack_require__(249);
-	var PassThrough = __webpack_require__(221).PassThrough;
-	var FetchError = __webpack_require__(250);
+	var convert = __webpack_require__(221).convert;
+	var bodyStream = __webpack_require__(247);
+	var PassThrough = __webpack_require__(219).PassThrough;
+	var FetchError = __webpack_require__(248);
 
 	module.exports = Body;
 
@@ -25294,15 +25133,15 @@
 
 
 /***/ },
-/* 223 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var iconvLite = __webpack_require__(224);
+	var iconvLite = __webpack_require__(222);
 	// Load Iconv from an external file to be able to disable Iconv for webpack
 	// Add /\/iconv-loader$/ to webpack.IgnorePlugin to ignore it
-	var Iconv = __webpack_require__(247);
+	var Iconv = __webpack_require__(245);
 
 	// Expose to the world
 	module.exports.convert = convert;
@@ -25413,12 +25252,12 @@
 
 
 /***/ },
-/* 224 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
 
-	var bomHandling = __webpack_require__(225),
+	var bomHandling = __webpack_require__(223),
 	    iconv = module.exports;
 
 	// All codecs and aliases are kept here, keyed by encoding name/alias.
@@ -25476,7 +25315,7 @@
 	iconv._codecDataCache = {};
 	iconv.getCodec = function getCodec(encoding) {
 	    if (!iconv.encodings)
-	        iconv.encodings = __webpack_require__(226); // Lazy load all encoding definitions.
+	        iconv.encodings = __webpack_require__(224); // Lazy load all encoding definitions.
 	    
 	    // Canonicalize encoding name: strip all non-alphanumeric chars and appended year.
 	    var enc = (''+encoding).toLowerCase().replace(/[^0-9a-z]|:\d{4}$/g, "");
@@ -25550,17 +25389,17 @@
 	    // Load streaming support in Node v0.10+
 	    var nodeVerArr = nodeVer.split(".").map(Number);
 	    if (nodeVerArr[0] > 0 || nodeVerArr[1] >= 10) {
-	        __webpack_require__(244)(iconv);
+	        __webpack_require__(242)(iconv);
 	    }
 
 	    // Load Node primitive extensions.
-	    __webpack_require__(245)(iconv);
+	    __webpack_require__(243)(iconv);
 	}
 
 
 
 /***/ },
-/* 225 */
+/* 223 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -25618,7 +25457,7 @@
 
 
 /***/ },
-/* 226 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -25626,14 +25465,14 @@
 	// Update this array if you add/rename/remove files in this directory.
 	// We support Browserify by skipping automatic module discovery and requiring modules directly.
 	var modules = [
+	    __webpack_require__(225),
 	    __webpack_require__(227),
+	    __webpack_require__(228),
 	    __webpack_require__(229),
 	    __webpack_require__(230),
 	    __webpack_require__(231),
 	    __webpack_require__(232),
 	    __webpack_require__(233),
-	    __webpack_require__(234),
-	    __webpack_require__(235),
 	];
 
 	// Put all encoding/alias/codec definitions to single object and export it. 
@@ -25646,7 +25485,7 @@
 
 
 /***/ },
-/* 227 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -25696,7 +25535,7 @@
 	//------------------------------------------------------------------------------
 
 	// We use node.js internal decoder. Its signature is the same as ours.
-	var StringDecoder = __webpack_require__(228).StringDecoder;
+	var StringDecoder = __webpack_require__(226).StringDecoder;
 
 	if (!StringDecoder.prototype.end) // Node v0.8 doesn't have this method.
 	    StringDecoder.prototype.end = function() {};
@@ -25839,13 +25678,13 @@
 
 
 /***/ },
-/* 228 */
+/* 226 */
 /***/ function(module, exports) {
 
 	module.exports = require("string_decoder");
 
 /***/ },
-/* 229 */
+/* 227 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -26027,7 +25866,7 @@
 
 
 /***/ },
-/* 230 */
+/* 228 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -26322,7 +26161,7 @@
 
 
 /***/ },
-/* 231 */
+/* 229 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -26400,7 +26239,7 @@
 
 
 /***/ },
-/* 232 */
+/* 230 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -26575,7 +26414,7 @@
 
 
 /***/ },
-/* 233 */
+/* 231 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -27031,7 +26870,7 @@
 	}
 
 /***/ },
-/* 234 */
+/* 232 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -27591,7 +27430,7 @@
 
 
 /***/ },
-/* 235 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -27636,7 +27475,7 @@
 
 	    'shiftjis': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(236) },
+	        table: function() { return __webpack_require__(234) },
 	        encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
 	        encodeSkipVals: [{from: 0xED40, to: 0xF940}],
 	    },
@@ -27653,7 +27492,7 @@
 
 	    'eucjp': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(237) },
+	        table: function() { return __webpack_require__(235) },
 	        encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
 	    },
 
@@ -27680,13 +27519,13 @@
 	    '936': 'cp936',
 	    'cp936': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(238) },
+	        table: function() { return __webpack_require__(236) },
 	    },
 
 	    // GBK (~22000 chars) is an extension of CP936 that added user-mapped chars and some other.
 	    'gbk': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(238).concat(__webpack_require__(239)) },
+	        table: function() { return __webpack_require__(236).concat(__webpack_require__(237)) },
 	    },
 	    'xgbk': 'gbk',
 	    'isoir58': 'gbk',
@@ -27698,8 +27537,8 @@
 	    // http://www.khngai.com/chinese/charmap/tblgbk.php?page=0
 	    'gb18030': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(238).concat(__webpack_require__(239)) },
-	        gb18030: function() { return __webpack_require__(240) },
+	        table: function() { return __webpack_require__(236).concat(__webpack_require__(237)) },
+	        gb18030: function() { return __webpack_require__(238) },
 	        encodeSkipVals: [0x80],
 	        encodeAdd: {'€': 0xA2E3},
 	    },
@@ -27714,7 +27553,7 @@
 	    '949': 'cp949',
 	    'cp949': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(241) },
+	        table: function() { return __webpack_require__(239) },
 	    },
 
 	    'cseuckr': 'cp949',
@@ -27755,14 +27594,14 @@
 	    '950': 'cp950',
 	    'cp950': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(242) },
+	        table: function() { return __webpack_require__(240) },
 	    },
 
 	    // Big5 has many variations and is an extension of cp950. We use Encoding Standard's as a consensus.
 	    'big5': 'big5hkscs',
 	    'big5hkscs': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(242).concat(__webpack_require__(243)) },
+	        table: function() { return __webpack_require__(240).concat(__webpack_require__(241)) },
 	        encodeSkipVals: [0xa2cc],
 	    },
 
@@ -27773,7 +27612,7 @@
 
 
 /***/ },
-/* 236 */
+/* 234 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -28324,7 +28163,7 @@
 	];
 
 /***/ },
-/* 237 */
+/* 235 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -29149,7 +28988,7 @@
 	];
 
 /***/ },
-/* 238 */
+/* 236 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -31773,7 +31612,7 @@
 	];
 
 /***/ },
-/* 239 */
+/* 237 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -32036,7 +31875,7 @@
 	];
 
 /***/ },
-/* 240 */
+/* 238 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -32461,7 +32300,7 @@
 	};
 
 /***/ },
-/* 241 */
+/* 239 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -34844,7 +34683,7 @@
 	];
 
 /***/ },
-/* 242 */
+/* 240 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -35576,7 +35415,7 @@
 	];
 
 /***/ },
-/* 243 */
+/* 241 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -36085,12 +35924,12 @@
 	];
 
 /***/ },
-/* 244 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
 
-	var Transform = __webpack_require__(221).Transform;
+	var Transform = __webpack_require__(219).Transform;
 
 
 	// == Exports ==================================================================
@@ -36211,7 +36050,7 @@
 
 
 /***/ },
-/* 245 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -36245,7 +36084,7 @@
 	        }
 
 	        // -- SlowBuffer -----------------------------------------------------------
-	        var SlowBuffer = __webpack_require__(246).SlowBuffer;
+	        var SlowBuffer = __webpack_require__(244).SlowBuffer;
 
 	        original.SlowBufferToString = SlowBuffer.prototype.toString;
 	        SlowBuffer.prototype.toString = function(encoding, start, end) {
@@ -36385,7 +36224,7 @@
 
 	        // -- Readable -------------------------------------------------------------
 	        if (iconv.supportsStreams) {
-	            var Readable = __webpack_require__(221).Readable;
+	            var Readable = __webpack_require__(219).Readable;
 
 	            original.ReadableSetEncoding = Readable.prototype.setEncoding;
 	            Readable.prototype.setEncoding = function setEncoding(enc, options) {
@@ -36408,7 +36247,7 @@
 
 	        delete Buffer.isNativeEncoding;
 
-	        var SlowBuffer = __webpack_require__(246).SlowBuffer;
+	        var SlowBuffer = __webpack_require__(244).SlowBuffer;
 
 	        SlowBuffer.prototype.toString = original.SlowBufferToString;
 	        SlowBuffer.prototype.write = original.SlowBufferWrite;
@@ -36419,7 +36258,7 @@
 	        Buffer.prototype.write = original.BufferWrite;
 
 	        if (iconv.supportsStreams) {
-	            var Readable = __webpack_require__(221).Readable;
+	            var Readable = __webpack_require__(219).Readable;
 
 	            Readable.prototype.setEncoding = original.ReadableSetEncoding;
 	            delete Readable.prototype.collect;
@@ -36431,13 +36270,13 @@
 
 
 /***/ },
-/* 246 */
+/* 244 */
 /***/ function(module, exports) {
 
 	module.exports = require("buffer");
 
 /***/ },
-/* 247 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36448,7 +36287,7 @@
 	try {
 	    // this is to fool browserify so it doesn't try (in vain) to install iconv.
 	    iconv_package = 'iconv';
-	    Iconv = __webpack_require__(248)(iconv_package).Iconv;
+	    Iconv = __webpack_require__(246)(iconv_package).Iconv;
 	} catch (E) {
 	    // node-iconv not present
 	}
@@ -36457,14 +36296,14 @@
 
 
 /***/ },
-/* 248 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./encoding": 223,
-		"./encoding.js": 223,
-		"./iconv-loader": 247,
-		"./iconv-loader.js": 247
+		"./encoding": 221,
+		"./encoding.js": 221,
+		"./iconv-loader": 245,
+		"./iconv-loader.js": 245
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -36477,11 +36316,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 248;
+	webpackContext.id = 246;
 
 
 /***/ },
-/* 249 */
+/* 247 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -36508,7 +36347,7 @@
 
 
 /***/ },
-/* 250 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -36544,17 +36383,17 @@
 
 	}
 
-	__webpack_require__(251).inherits(FetchError, Error);
+	__webpack_require__(249).inherits(FetchError, Error);
 
 
 /***/ },
-/* 251 */
+/* 249 */
 /***/ function(module, exports) {
 
 	module.exports = require("util");
 
 /***/ },
-/* 252 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -36565,8 +36404,8 @@
 	 */
 
 	var http = __webpack_require__(1);
-	var Headers = __webpack_require__(253);
-	var Body = __webpack_require__(222);
+	var Headers = __webpack_require__(251);
+	var Body = __webpack_require__(220);
 
 	module.exports = Response;
 
@@ -36610,7 +36449,7 @@
 
 
 /***/ },
-/* 253 */
+/* 251 */
 /***/ function(module, exports) {
 
 	
@@ -36757,7 +36596,7 @@
 
 
 /***/ },
-/* 254 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -36767,9 +36606,9 @@
 	 * Request class contains server only options
 	 */
 
-	var parse_url = __webpack_require__(218).parse;
-	var Headers = __webpack_require__(253);
-	var Body = __webpack_require__(222);
+	var parse_url = __webpack_require__(216).parse;
+	var Headers = __webpack_require__(251);
+	var Body = __webpack_require__(220);
 
 	module.exports = Request;
 
@@ -36838,7 +36677,166 @@
 
 
 /***/ },
-/* 255 */
+/* 253 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	class Post extends _react.Component {
+
+	  render() {
+	    return _react2.default.createElement(
+	      'section',
+	      { name: 'Post' },
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Post'
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/' },
+	        'Go to home'
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/ramdom' },
+	        'Go to ramdom'
+	      )
+	    );
+	  }
+	}
+
+	exports.default = Post;
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(172);
+
+	var _Post = __webpack_require__(212);
+
+	var _Post2 = _interopRequireDefault(_Post);
+
+	var _api = __webpack_require__(213);
+
+	var _api2 = _interopRequireDefault(_api);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+	class Profile extends _react.Component {
+	  constructor(props) {
+	    super(props);
+
+	    this.state = {
+	      user: {},
+	      posts: [],
+	      loading: true
+	    };
+	  }
+
+	  componentDidMount() {
+	    var _this = this;
+
+	    return _asyncToGenerator(function* () {
+	      const [user, posts] = yield Promise.all([_api2.default.users.getSingle(_this.props.params.id), _api2.default.users.getPosts(_this.props.params.id)]);
+
+	      _this.setState({
+	        user,
+	        posts,
+	        loading: false
+	      });
+	    })();
+	  }
+	  render() {
+	    return _react2.default.createElement(
+	      'section',
+	      { name: 'Profile' },
+	      _react2.default.createElement(
+	        'h2',
+	        null,
+	        'profile of ',
+	        this.state.user.name
+	      ),
+	      _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Basic Info'
+	        ),
+	        _react2.default.createElement('input', { type: 'email', value: this.state.user.email, disabled: true })
+	      ),
+	      this.state.user.address && _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Address'
+	        ),
+	        _react2.default.createElement(
+	          'address',
+	          null,
+	          this.state.user.address.street,
+	          '  ',
+	          _react2.default.createElement('br', null),
+	          this.state.user.address.suite,
+	          '  ',
+	          _react2.default.createElement('br', null),
+	          this.state.user.address.city,
+	          '  ',
+	          _react2.default.createElement('br', null),
+	          this.state.user.address.zipcode,
+	          '  ',
+	          _react2.default.createElement('br', null)
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'section',
+	        null,
+	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({
+	          key: post.id,
+	          user: this.state.user
+	        }, post)))
+	      )
+	    );
+	  }
+	}
+
+	exports.default = Profile;
+
+/***/ },
+/* 255 */,
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36877,7 +36875,7 @@
 	exports.default = Error404;
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

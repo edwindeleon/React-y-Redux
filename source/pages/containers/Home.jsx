@@ -27,7 +27,7 @@ class Home extends Component {
   }
   
   render() {
-  console.log(this.props);
+  
     return (
       <section name="Home">
         <h1>Home</h1>
@@ -38,9 +38,6 @@ class Home extends Component {
           {this.state.posts
             .map(post => <Post key={post.id} {...post} />)}
         </section>
-        <Link to="/about">
-          Go to about
-        </Link>
       </section>
     );
   }

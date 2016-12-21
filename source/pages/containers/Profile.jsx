@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 
 import Post from '../../posts/containers/Post.jsx';
-
 import api from '../../api.js';
 
 class Profile extends Component {

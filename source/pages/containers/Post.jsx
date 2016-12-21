@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 class Post extends Component {
+  
   render() {
     return (
       <section name="Post">
@@ -12,6 +13,7 @@ class Post extends Component {
         <Link to="/ramdom">
           Go to ramdom
         </Link>
+
       </section>
     );
   }
