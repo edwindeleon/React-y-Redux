@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-
 import Post from '../../posts/containers/Post.jsx';
+import Loading from '../../shared/components/Loading.jsx';
 import api from '../../api.js';
 
 class Profile extends Component {
@@ -32,6 +32,9 @@ class Profile extends Component {
     });
   }
   render() {
+  if (this.state.loading) {
+      return <Loading />
+  }
     return (
       <section name="Profile">
         <h2>profile of {this.state.user.name}</h2>

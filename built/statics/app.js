@@ -25466,6 +25466,10 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
+	var _Loading = __webpack_require__(224);
+
+	var _Loading2 = _interopRequireDefault(_Loading);
+
 	var _api = __webpack_require__(219);
 
 	var _api2 = _interopRequireDefault(_api);
@@ -25512,11 +25516,7 @@
 	      _react2.default.createElement(
 	        'section',
 	        null,
-	        this.state.loading && _react2.default.createElement(
-	          'h2',
-	          null,
-	          'loading posts...'
-	        ),
+	        this.state.loading && _react2.default.createElement(_Loading2.default, null),
 	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post)))
 	      )
 	    );
@@ -26226,6 +26226,10 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
+	var _Loading = __webpack_require__(224);
+
+	var _Loading2 = _interopRequireDefault(_Loading);
+
 	var _api = __webpack_require__(219);
 
 	var _api2 = _interopRequireDefault(_api);
@@ -26259,6 +26263,9 @@
 	    })();
 	  }
 	  render() {
+	    if (this.state.loading) {
+	      return _react2.default.createElement(_Loading2.default, null);
+	    }
 	    return _react2.default.createElement(
 	      'section',
 	      { name: 'Profile' },
@@ -26318,7 +26325,32 @@
 	exports.default = Profile;
 
 /***/ },
-/* 224 */,
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Loading() {
+		return _react2.default.createElement(
+			'h3',
+			null,
+			'Cargando data...'
+		);
+	}
+
+	exports.default = Loading;
+
+/***/ },
 /* 225 */
 /***/ function(module, exports, __webpack_require__) {
 

@@ -4,7 +4,7 @@ import React from 'react';
 function Loading() {
 	return (
 		<h3>
-		Loading data...
+		Cargando data...
 		</h3>
 		);
 }
