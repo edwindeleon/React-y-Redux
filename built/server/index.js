@@ -24347,6 +24347,8 @@
 	      posts: [],
 	      loading: true
 	    };
+
+	    this.handleScroll = this.handleScroll.bind(this);
 	  }
 
 	  componentDidMount() {
@@ -24360,9 +24362,42 @@
 	        page: _this.state.page + 1,
 	        loading: false
 	      });
+
+	      window.addEventListener('scroll', _this.handleScroll);
 	    })();
 	  }
 
+	  componentWillUnmount() {
+	    window.removeEventListener('scroll', this.handleScroll);
+	  }
+
+	  handleScroll(event) {
+	    var _this2 = this;
+
+	    if (this.state.loading) return null;
+	    const scrolled = window.scrollY;
+	    const viewportHeight = window.innerHeight;
+	    const fullHeight = document.body.clientHeight;
+
+	    if (!(scrolled + viewportHeight + 300 >= fullHeight)) {
+	      return null;
+	    }
+
+	    this.setState({ loading: true }, _asyncToGenerator(function* () {
+	      try {
+	        const posts = yield _api2.default.posts.getList(_this2.state.page);
+
+	        _this2.setState({
+	          posts: _this2.state.posts.concat(posts),
+	          page: _this2.state.page + 1,
+	          loading: false
+	        });
+	      } catch (error) {
+	        console.error(error);
+	        _this2.setState({ loading: false });
+	      }
+	    }));
+	  }
 	  render() {
 
 	    return _react2.default.createElement(
@@ -24376,8 +24411,8 @@
 	      _react2.default.createElement(
 	        'section',
 	        null,
-	        this.state.loading && _react2.default.createElement(_Loading2.default, null),
-	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post)))
+	        this.state.posts.map(post => _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post))),
+	        this.state.loading && _react2.default.createElement(_Loading2.default, null)
 	      )
 	    );
 	  }
