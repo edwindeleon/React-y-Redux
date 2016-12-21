@@ -62,7 +62,7 @@
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Layout = __webpack_require__(257);
+	var _Layout = __webpack_require__(258);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -24264,15 +24264,15 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Post = __webpack_require__(253);
+	var _Post = __webpack_require__(254);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Profile = __webpack_require__(254);
+	var _Profile = __webpack_require__(256);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Error = __webpack_require__(256);
+	var _Error = __webpack_require__(257);
 
 	var _Error2 = _interopRequireDefault(_Error);
 
@@ -24326,7 +24326,7 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Loading = __webpack_require__(255);
+	var _Loading = __webpack_require__(253);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -36723,6 +36723,32 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Loading() {
+		return _react2.default.createElement(
+			'h3',
+			null,
+			'Cargando data...'
+		);
+	}
+
+	exports.default = Loading;
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
@@ -36738,9 +36764,13 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Loading = __webpack_require__(255);
+	var _Loading = __webpack_require__(253);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
+
+	var _Comment = __webpack_require__(255);
+
+	var _Comment2 = _interopRequireDefault(_Comment);
 
 	var _api = __webpack_require__(213);
 
@@ -36789,7 +36819,12 @@
 	      _react2.default.createElement(_Post2.default, _extends({}, this.state.post, {
 	        user: this.state.user,
 	        comments: this.state.comments
-	      }))
+	      })),
+	      _react2.default.createElement(
+	        'section',
+	        { name: 'Comments' },
+	        this.state.comments.map(comment => _react2.default.createElement(_Comment2.default, _extends({ key: comment.id }, comment)))
+	      )
 	    );
 	  }
 	}
@@ -36797,7 +36832,47 @@
 	exports.default = Post;
 
 /***/ },
-/* 254 */
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function Comment(props) {
+		return _react2.default.createElement(
+			'article',
+			{ id: `comment-${ props.id }` },
+			_react2.default.createElement(
+				'div',
+				null,
+				'By: ',
+				_react2.default.createElement(
+					'a',
+					{ href: `mailto:${ props.email }` },
+					props.name
+				)
+			),
+			_react2.default.createElement(
+				'p',
+				null,
+				props.body
+			)
+		);
+	}
+
+	exports.default = Comment;
+
+/***/ },
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36818,7 +36893,7 @@
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _Loading = __webpack_require__(255);
+	var _Loading = __webpack_require__(253);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -36917,33 +36992,7 @@
 	exports.default = Profile;
 
 /***/ },
-/* 255 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function Loading() {
-		return _react2.default.createElement(
-			'h3',
-			null,
-			'Cargando data...'
-		);
-	}
-
-	exports.default = Loading;
-
-/***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36982,7 +37031,7 @@
 	exports.default = Error404;
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
