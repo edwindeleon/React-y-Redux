@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import Post from '../../posts/containers/Post.jsx';
 import Loading from '../../shared/components/Loading.jsx';
+import styles from './Page.css';
 import api from '../../api.js';
 
 class Profile extends Component {
@@ -36,7 +37,7 @@ class Profile extends Component {
       return <Loading />
   }
     return (
-      <section name="Profile">
+      <section name="Profile" className={styles.section}>
         <h2>profile of {this.state.user.name}</h2>
 
         <fieldset>
@@ -56,7 +57,7 @@ class Profile extends Component {
             </fieldset>
           )}
 
-          <section>
+          <section  className={styles.list}>
             {this.state.posts
               .map(post => (
                 <Post
