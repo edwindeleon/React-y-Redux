@@ -1,11 +1,13 @@
 /* eslint linebreak-style: ["error", "windows"] */
 
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 
 function Loading() {
   return (
     <h3>
-     Cargando data...
+      <FormattedMessage id="loading" />
     </h3>
   );
 }
