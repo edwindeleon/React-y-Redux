@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component, PropTypes } from 'react';
 
-import PostBody from '../../posts/containers/Post.jsx';
-import Loading from '../../shared/components/Loading.jsx';
-import Comment from '../../comments/components/Comment.jsx';
+import PostBody from '../../posts/containers/Post';
+import Loading from '../../shared/components/Loading';
+import Comment from '../../comments/components/Comment';
 import styles from './Page.css';
 
-import api from '../../api.js';
+
+import api from '../../api';
 
 class Post extends Component {
   constructor(props) {
@@ -20,14 +20,18 @@ class Post extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.initialFetch();
+  }
+
+  async initialFetch() {
     const [
       post,
       comments,
     ] = await Promise.all([
-        api.posts.getSingle(this.props.params.id),
-        api.posts.getComments(this.props.params.id),
-      ]);
+      api.posts.getSingle(this.props.params.id),
+      api.posts.getComments(this.props.params.id),
+    ]);
 
     const user = await api.users.getSingle(post.userId);
 
@@ -38,9 +42,9 @@ class Post extends Component {
       comments,
     });
   }
-  
+
   render() {
-    if(this.state.loading){
+    if (this.state.loading) {
       return <Loading />;
     }
     return (
@@ -50,17 +54,24 @@ class Post extends Component {
           user={this.state.user}
           comments={this.state.comments}
         />
-      <section name="Comments">
-        {this.state.comments
+
+        <section className={styles.list}>
+          {this.state.comments
             .map(comment => (
               <Comment key={comment.id} {...comment} />
-              ))
-        }
-      </section>
+            ))
+          }
+        </section>
 
       </section>
     );
   }
 }
+
+Post.propTypes = {
+  params: PropTypes.shape({
+    id: PropTypes.string,
+  }),
+};
 
 export default Post;
