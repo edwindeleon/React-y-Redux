@@ -1,11 +1,13 @@
+/* eslint linebreak-style: ["error", "windows"] */
+
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import api from '../../api.js';
-import styles from './Post.css'
+import api from '../../api';
 
+import styles from './Post.css';
 
 class Post extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -15,9 +17,12 @@ class Post extends Component {
     };
   }
 
-  async componentDidMount() {
-    if (!!this.state.user && !!this.state.comments) return this.setState({loading: false});
+  componentDidMount() {
+    this.initialFetch();
+  }
 
+  async initialFetch() {
+    if (!!this.state.user && !!this.state.comments) return this.setState({ loading: false });
     const [
       user,
       comments,
@@ -26,22 +31,20 @@ class Post extends Component {
       !this.state.comments ? api.posts.getComments(this.props.id) : Promise.resolve(null),
     ]);
 
-    this.setState({
+    return this.setState({
       loading: false,
       user: user || this.state.user,
       comments: comments || this.state.comments,
-    })
-
+    });
   }
   render() {
-    return(
+    return (
       <article id={`post-${this.props.id}`} className={styles.post}>
-        
-          <h2 className={styles.title}>
-            <Link to={`/post/${this.props.id}`}>
-               {this.props.title} 
-            </Link>
-          </h2>
+        <h2 className={styles.title}>
+          <Link to={`/posts/${this.props.id}`} >
+            {this.props.title}
+          </Link>
+        </h2>
         <p className={styles.body}>
           {this.props.body}
         </p>
@@ -56,15 +59,21 @@ class Post extends Component {
           </div>
         )}
       </article>
-    )
+    );
   }
 }
 
-Post.propTypes= {
+Post.propTypes = {
   id: PropTypes.number,
   userId: PropTypes.number,
   title: PropTypes.string,
   body: PropTypes.string,
+  user: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  comments: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
 };
 
 export default Post;
