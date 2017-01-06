@@ -3,9 +3,15 @@ import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { ServerRouter, createServerRenderContext } from 'react-router';
 import { IntlProvider } from 'react-intl';
+
 import Pages from './pages/containers/Page';
 import Layout from './pages/components/Layout';
+
 import messages from './messages.json';
+
+const domain = process.env.NODE_ENV === 'production'
+  ? 'https://react-y-redux-fzpllxucwf.now.sh'
+  : 'http://localhost:3001';
 
 function requestHandler(request, response) {
   const locale = request.headers['accept-language'].indexOf('es') >= 0 ? 'es' : 'en';
@@ -26,6 +32,7 @@ function requestHandler(request, response) {
     response.writeHead(301, {
       Location: result.redirect.pathname,
     });
+    response.end();
   }
 
   if (result.missed) {
@@ -45,6 +52,7 @@ function requestHandler(request, response) {
       <Layout
         title="Aplicación"
         content={html}
+        domain={domain}
       />,
     ),
   );

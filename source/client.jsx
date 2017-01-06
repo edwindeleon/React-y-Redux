@@ -13,7 +13,6 @@ import messages from './messages.json';
 import Pages from './pages/containers/Page';
 
 addLocaleData([...en, ...es]);
-
 const locale = navigator.languages.indexOf('es') >= 0 ? 'es' : 'en';
 
 render(
